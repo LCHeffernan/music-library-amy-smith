@@ -8,18 +8,15 @@ const {
   deleteArtist,
 } = require("../controllers/artist");
 
-const router = express.Router();
+const artistRouter = express.Router();
 
-router.route("/").post(createArtist);
+artistRouter.route("/").post(createArtist).get(getArtists);
 
-router.route("/").get(getArtists);
+artistRouter
+  .route("/:id")
+  .get(getArtistById)
+  .put(putArtist)
+  .patch(updateArtist)
+  .delete(deleteArtist);
 
-router.route("/:id").get(getArtistById);
-
-router.route("/:id").put(putArtist);
-
-router.route("/:id").patch(updateArtist);
-
-router.route("/:id").delete(deleteArtist);
-
-module.exports = router;
+module.exports = artistRouter;

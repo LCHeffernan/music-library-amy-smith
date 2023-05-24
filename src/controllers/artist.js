@@ -106,7 +106,6 @@ const deleteArtist = async (req, res) => {
     const {
       rows: [artist],
     } = await db.query(`DELETE FROM Artists WHERE id = $1 RETURNING *`, [id]);
-    console.log(artist);
     if (!artist) {
       return res.status(404).json({ message: `artist ${id} does not exist` });
     }
